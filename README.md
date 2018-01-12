@@ -11,9 +11,9 @@ Major changes to database and file structure are likely to come, breaking any us
 
 ### Requirements
 
-* PHP 5.7 or above
+* Web server running PHP 5.7 or above
 * MySQL or MariaDB
-* Server configured to run PHP files without the .php extention in the URL
+* Web server configured to run PHP files without the .php extention in the URL
 
 ### Set up database
 
