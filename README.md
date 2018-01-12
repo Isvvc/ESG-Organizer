@@ -31,8 +31,8 @@ Create the `esguser` and give it priviliges. Make sure to assign a password in p
 
 Copy the `esgo_includes` folder to a location on your web server, preferably _outside_ of your web root.
 
-Copy the contents of the `html` folder to somewhere in your webroot. It does not have to be in the root. Edit the `includes.php` file to direct the location of files (instructions given in file).
+Copy the contents of the `html` folder to somewhere in your webroot. It does not have to be in the root of the webroot. Edit the `includes.php` file to direct the location of files (instructions given in file).
 
-Edit the value of the `$dbpass` variable in `esgo_includes/db_connection.php` to the password given to `esguser` in the databse..
+Edit the value of the `$dbpass` variable in `esgo_includes/db_connection.php` to the password given to `esguser` in the databse.
 
-Open the `install.php` to create the database tables and populate them with default values.
+Open `install.php` in your browser to create the database tables and populate them with default values.
