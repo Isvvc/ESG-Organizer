@@ -17,7 +17,7 @@
 	<div id="page">
 		<h2>Mod Authors</h2>
 		<?php
-			//Query to get all of the authors
+			// Query to get all of the authors
 			$query="SELECT * FROM authors";
 			$result=dbquery($db,$query);
 		?>
@@ -38,21 +38,26 @@
 						$output.=$row["name"];
 					$output.="</td>";
 					$output.="<td>";
-						$output.=($row["nexusId"])?createNexusLink($row["nexusId"],0):"";
+						// If the author has a Nexus ID, create a link to their account.
+						#$output.=($row["nexusId"])?createNexusLink($row["nexusId"],0):"";
+						if($row["nexusId"]) $output.=createNexusLink($row["nexusId"],0);
 					$output.="</td>";
 					$output.="<td>";
+						// Create a link to the author's external site
 						$output.=($row["link"])?"<a href=\"{$row["link"]}\" target=\"blank\">{$row["link"]}</a>":"";
 					$output.="</td>";
 					$output.="<td>";
+						// Query the categories this author has
 						$query="SELECT categories.name FROM authorCategories INNER JOIN categories ON authorCategories.category=categories.id WHERE author={$row["id"]}";
 						$resultCategories=dbquery($db,$query);
+						// Output the author's categories
 						while($rowCategories=mysqli_fetch_assoc($resultCategories)){
-								$output.="{$rowCategories["name"]}, ";
+							$output.="{$rowCategories["name"]}, ";
 						}
-						$output=rtrim($output,', ');
-						//$output.=($row["categories"]?(preg_replace('(,)','$0 ',$row["categories"])):"");
+						$output=rtrim($output,', ');	// Remove a trailing comma
 					$output.="</td>";
 					$output.="<td>";
+						// Output the author's content types
 						$output.=($row["content"]?(preg_replace('(,)','$0 ',$row["content"])):"");
 					$output.="</td>";
 					$output.="<td>";
