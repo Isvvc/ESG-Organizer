@@ -20,11 +20,11 @@ Major changes to database and file structure are likely to come, breaking any us
 Log into MySQL (or MariaDB) as root and create the `esgorganizer` databse.
 
 	CREATE DATABASE esgorganizer;
-	USE esgorganizer;
 
 Create the `esguser` and give it priviliges. Make sure to assign a password in place of `[password]`.
 
 	CREATE USER 'esguser'@'localhost' IDENTIFIED BY '[password]';
+	
 	GRANT ALL PRIVILEGES ON esgorganizer.* TO 'esguser'@'localhost';
 
 ### Install and configure files
