@@ -11,7 +11,7 @@ Major changes to database and file structure are likely to come, breaking any us
 
 ### Requirements
 
-* Web server running PHP with `mysqli` command support.
+* Web server running PHP with `mysqli` support
 * MySQL or MariaDB
 * Web server configured to run PHP files without the .php extention in the URL
 
