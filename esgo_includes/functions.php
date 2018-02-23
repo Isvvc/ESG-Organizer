@@ -34,6 +34,11 @@
 						$output.="\" >Mods</a>";
 						$output.="</li>";
 					$output.="<li>Modules</li>";
+					$output.="<li>";
+						$output.="<a href=\"";
+						$output.=$esgoPath."/skyrim/settings/";
+						$output.="\" >Settings</a>";
+						$output.="</li>";
 				$output.="</ul>";
 			$output.="</li>";
 			$output.="<li>Daggerfall</li>";

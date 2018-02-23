@@ -1,3 +1,3 @@
-		<div id="footer">Copyright 2018, Isaac Lyons</div>
+		<div id="footer">Copyright 2017, Isaac Lyons</div>
 	</body>
 </html>

@@ -34,8 +34,9 @@
 					echo $output;
 					// Add delete button with confirmation box.
 					?>
-						<form action="delete_category" method="post" onsubmit="return confirm('Are you sure you want to delete this category?');">
-							<input type="submit" value="Delete">
+						<!--- <form action="delete_category" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');" > -->
+						<form action="delete_category" method="POST" >
+							<input type="submit" name="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this category?');"> 
 							<input type="hidden" name="id" value=<?php echo '"'.$row["id"].'"' ?> >
 						</form>
 					<?php
@@ -54,7 +55,7 @@
 		<form action="new_category" method="POST">
 			<label for="name">Name:</label>
 			<input type="text" name="name" id="name">
-			<input type="submit" name="submit" value="Add character">
+			<input type="submit" name="submit" value="Add category">
 		</form>
 		
 	</div>
