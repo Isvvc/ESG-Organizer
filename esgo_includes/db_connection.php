@@ -1,6 +1,6 @@
 <?php
   $dbuser='esguser';
-  $dbpass='82sbJV62T8hnc785';
+  $dbpass='password';
 
   define("DB_SERVER", "localhost");
   define("DB_USER", $dbuser);
