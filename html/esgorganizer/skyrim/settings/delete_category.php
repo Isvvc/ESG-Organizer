@@ -13,13 +13,17 @@
 		// Store the data POSTed from the add author form
 		$id=mysqli_real_escape_string($db,$_POST['id']);
 		
-		// Create the MySQL query to insert a author based on the stored POST values
+		// Create the MySQL query to remove the category form any author
+		$query ="DELETE FROM authorCategories ";
+		$query.="WHERE category=$id";
+
+		$result=dbquery($db,$query);
+		
+		// Create the MySQL query to delete the category
 		$query ="DELETE FROM categories ";
 		$query.="WHERE id=$id";
 
-		$result=dbquery($db,$query);
-		//echo $query;
-		//echo "ayy lmao";	
+		$result=dbquery($db,$query);	
 		redirect_to(".");
 	}
 	//echo "you're right";
