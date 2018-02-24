@@ -68,8 +68,8 @@
 							<input type="submit" value="Edit">
 							<input type="hidden" name="id" value=<?php echo '"'.$row["id"].'"' ?> >
 						</form>
-						<form action="delete_author" method="post" onsubmit="return confirm('Are you sure you want to delete this author?');">
-							<input type="submit" value="Delete">
+						<form action="delete_author" method="POST" >
+							<input type="submit" name="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this category?');">
 							<input type="hidden" name="id" value=<?php echo '"'.$row["id"].'"' ?> >
 						</form>
 						
