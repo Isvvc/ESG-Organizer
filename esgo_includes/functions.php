@@ -284,7 +284,7 @@
 		$url="http://www.nexusmods.com/skyrim/users/$nexusModId/?";
 		$data=file_get_contents($url);
 		//find on the page the h1 tag as that is where the author's name is
-		$regex='/<h1>\n(.+?) /';
+		$regex='/<h1>(.+?)</';
 		preg_match($regex,$data,$match);
 		return $match[1];
 	}
