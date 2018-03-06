@@ -55,11 +55,12 @@
 			$query =rtrim($query,', ');
 			$query.=";";
 
-			$result=dbquery($db,$query);
+			$result=dbquery($db,$query);			
 			
-			// Redirect to the the Authors page
-			redirect_to(".");
 		}
+		
+		// Redirect to the the Authors page
+		redirect_to(".");
 	}
 ?>
 
@@ -69,7 +70,7 @@
 	</div>
 
 	<div id="page">
-		<p><a href=".">Back</a></p>
+		<p><a href=".">Cancel</a></p>
 		<h2>New Author</h2>
 		<form action="" method="POST">
 			<p>

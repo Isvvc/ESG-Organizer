@@ -123,7 +123,7 @@
 	}
 	
 	// Returns an unordered list of checkboxes for a database table of names
-	function tableCheckboxes($db,$tableName,$label=NULL,$selected=NULL){
+	function tableCheckboxes($db,$tableName,$label=NULL,$checked=NULL){
 		if($label) $selectCheckboxes="<p>$label: </p>";
 		
 		// Start the unordered list
@@ -145,7 +145,7 @@
 		foreach($names as $key => $value){
 			$selectCheckboxes.='<li>';
 			$selectCheckboxes.="<input type=\"checkbox\" name=\"$tableName$key\" id=\"$value\"";
-			if(in_array($value,$selected)){
+			if(in_array($key,$checked)){
 				$selectCheckboxes.=' checked';
 			}
 			$selectCheckboxes.='>';
@@ -185,7 +185,7 @@
 	}
 	
 	// Returns an unordered list of checkboxes for a set in a database table
-	function setCheckboxes($db,$tableName,$columnName,$labelTitle=NULL,$labels=false,$selected=NULL){
+	function setCheckboxes($db,$tableName,$columnName,$labelTitle=NULL,$labels=false,$checked=NULL){
 		if($labelTitle) $selectCheckboxes="<p>$labelTitle: </p>";
 		
 		// Start the unordered list
@@ -284,7 +284,7 @@
 		$url="http://www.nexusmods.com/skyrim/users/$nexusModId/?";
 		$data=file_get_contents($url);
 		//find on the page the h1 tag as that is where the author's name is
-		$regex='/<h1>\n(.+?) /';
+		$regex='/<h1>(.+?)</';
 		preg_match($regex,$data,$match);
 		return $match[1];
 	}
