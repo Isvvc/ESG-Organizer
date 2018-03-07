@@ -7,6 +7,44 @@
 	include("functions.php");
 	$title="ESG Organizer - Skyrim Mod Authors";
 	include("header.php");
+?><?php
+	if(isset($_GET['submit'])){
+		// If authors have been filtered
+		// put the checked categories and content into arrays;
+		$categories=postTableCheckboxes($db,"categories",$_GET);
+		$content=postSetCheckboxes($db,"authors","content",$_GET);
+
+		if(!empty($categories)){
+			// If there are checked categories
+			// Query to get the authors who have any of the checked categories
+			$query="SELECT authors.* FROM authors INNER JOIN authorCategories ON authors.id=authorCategories.author WHERE ( ";
+
+			foreach($categories as $value){
+				$query.="category=$value OR ";
+			}
+			$query =rtrim($query," RO");
+			$query.=") AND ";
+		}else{
+			// If no categories where checked
+			$query="SELECT * FROM authors WHERE ";
+		}
+
+		if(!empty($content)){
+			// If content was checked
+			// Query authors who have that content in their set
+			foreach($content as $value){
+				$query.="FIND_IN_SET('$value', content)>0 OR ";
+			}
+			$query=rtrim($query," RO");
+		}else{
+			// If no content was checked, ignore this step by ouputting 1
+			$query.="1";
+		}
+
+	}else{
+		// If there is no filter, get all authors
+		$query="SELECT * FROM authors";
+	}
 ?>
 
 <div id="main">
@@ -17,8 +55,7 @@
 	<div id="page">
 		<h2>Mod Authors</h2>
 		<?php
-			// Query to get all of the authors
-			$query="SELECT * FROM authors";
+			// Get authors from the querty described above
 			$result=dbquery($db,$query);
 		?>
 		
@@ -88,6 +125,13 @@
 
 		<p><a href="new_author">New Author</a></p>
 		
+		<h3>Filter</h3>
+		<p>Will show mod authors who have any of the checked items. Having nothing in a set checked acts as having everything checked.</p>
+		<form action="" method="GET">
+			<?php echo tableCheckboxes($db,"categories","Categories",$categories); ?>
+			<?php echo setCheckboxes($db,"authors","content","Content",true,$content); ?>
+			<p><input type="submit" name="submit" value="Filter"></p>
+		</form>
 	</div>
 </div>
 
