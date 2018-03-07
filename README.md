@@ -21,7 +21,8 @@ Log into MySQL (or MariaDB) as root and create the `esgorganizer` databse.
 
 	CREATE DATABASE esgorganizer;
 
-Create the `esguser` and give it priviliges. Make sure to assign a password in place of `[password]`.
+Create the `esguser` and give it priviliges. Make sure to assign a password in place of `[password]`.  
+_Make sure not to include special characters that might break php code._
 
 	CREATE USER 'esguser'@'localhost' IDENTIFIED BY '[password]';
 	
