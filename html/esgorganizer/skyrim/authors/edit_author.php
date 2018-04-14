@@ -9,6 +9,7 @@
 	include("header.php");
 ?><?php
 	if(isset($_POST['submit'])){
+		//When the updated author is submitted
 		// Store the data POSTed from the add author form
 		$name=mysqli_real_escape_string($db,$_POST['name']);
 		$nexus=$_POST['nexus'];
@@ -98,9 +99,11 @@
 		// Redirect to the the Authors page
 		redirect_to(".");
 	}else{
+		//When page is first opened
 		// Fill the forms with data from GET
 		$authorId=$_GET['id'];
 
+		// Query the given author's information from the authors table
 		$query="SELECT * FROM authors WHERE id=$authorId";
 		$result=dbquery($db,$query);
 
@@ -110,6 +113,7 @@
 		$other=$row["link"];
 		$content=explode(",",$row["content"]);
 
+		// Query thje given author's categories
 		$query="SELECT category FROM authorCategories WHERE author=$authorId";
 		$result=dbquery($db,$query);
 

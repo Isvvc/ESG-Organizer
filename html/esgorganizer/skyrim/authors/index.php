@@ -9,13 +9,13 @@
 	include("header.php");
 ?><?php
 	if(isset($_GET['submit'])){
-		// If authors have been filtered
+		//If authors have been filtered
 		// put the checked categories and content into arrays;
 		$categories=postTableCheckboxes($db,"categories",$_GET);
 		$content=postSetCheckboxes($db,"authors","content",$_GET);
 
 		if(!empty($categories)){
-			// If there are checked categories
+			//If there are checked categories
 			// Query to get the authors who have any of the checked categories
 			$query="SELECT authors.* FROM authors INNER JOIN authorCategories ON authors.id=authorCategories.author WHERE ( ";
 
@@ -25,24 +25,24 @@
 			$query =rtrim($query," RO");
 			$query.=") AND ";
 		}else{
-			// If no categories where checked
+			//If no categories where checked
 			$query="SELECT * FROM authors WHERE ";
 		}
 
 		if(!empty($content)){
-			// If content was checked
+			//If content was checked
 			// Query authors who have that content in their set
 			foreach($content as $value){
 				$query.="FIND_IN_SET('$value', content)>0 OR ";
 			}
 			$query=rtrim($query," RO");
 		}else{
-			// If no content was checked, ignore this step by ouputting 1
+			//If no content was checked, ignore this step by ouputting 1
 			$query.="1";
 		}
 
 	}else{
-		// If there is no filter, get all authors
+		//If there is no filter, get all authors
 		$query="SELECT * FROM authors";
 	}
 ?>

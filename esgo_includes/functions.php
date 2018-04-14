@@ -4,7 +4,7 @@
 		$result=mysqli_query($db,$query);
 		if(!$result){
 			echo $query;
-			die("Database query failed");
+			die("Database query failed: ".mysqli_error($db));
 		}
 		return $result;
 	}
@@ -279,11 +279,19 @@
 		<?php
 	}
 	
-	// Returns the Nexusmods author ID from a mod Nexus ID
-	function authorNameFromNexusId($nexusModId){
-		$url="http://www.nexusmods.com/skyrim/users/$nexusModId/?";
+	// Returns the Nexusmods ID from a mod or author ID
+	function nameFromNexusId($nexusModId,$type){
+		// Type 0 = user/author
+		// Type 1 = mod
+		$url="http://www.nexusmods.com/skyrim/";
+		if($type==0){
+			$url.="users";
+		}else{
+			$url.="mods";
+		}
+		$url.="/$nexusModId/?";
 		$data=file_get_contents($url);
-		//find on the page the h1 tag as that is where the author's name is
+		// Find on the page the h1 tag as that is where the author's name is
 		$regex='/<h1>(.+?)</';
 		preg_match($regex,$data,$match);
 		return $match[1];
@@ -312,5 +320,30 @@
 	function redirect_to($new_location){
 		header("Location: ".$new_location);
 		exit;
+	}
+
+	function authorDropdown($db,$label=false,$selected=NULL){
+		$query="SELECT id,name FROM authors";
+
+		$result=dbquery($db,$query);
+
+		// Create the label if needed and start the selection dropdown
+		$selectDropdown =$label?'<label for="authorId">Author: </label>':'';
+		$selectDropdown.='<select name="authorId" id="authorId">';
+
+		while($row=mysqli_fetch_assoc($result)){
+			// Add each other as an option with their name and ID, selecting the author if selected
+			$selectDropdown.="<option value={$row['id']}";
+			if($selected==$row['id']){
+				$selectDropdown.=' selected="selected"';
+			}
+			$selectDropdown.=">{$row['name']}</option>";
+		}
+ 
+		$selectDropdown .= "</select>";
+		 
+		mysqli_free_result($result);
+ 
+		return $selectDropdown;
 	}
 ?>

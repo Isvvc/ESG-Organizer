@@ -9,7 +9,7 @@
 	#include("header.php");
 ?><?php
 	if(isset($_POST['submit'])){
-		// Store the data POSTed from the add author form
+		// Store the data POSTed
 		$name=mysqli_real_escape_string($db,$_POST['name']);
 		
 		// Create the MySQL query to insert a author based on the stored POST values

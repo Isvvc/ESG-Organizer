@@ -18,7 +18,7 @@
 		if ($nexus) $nexus=nexusIdFromURL($nexus);
 		
 		// Get the mod author's name if the box was selected to automatically get it
-		if($_POST['autoNameCheckbox']) $name=authorNameFromNexusId($nexus);
+		if($_POST['autoNameCheckbox']) $name=nameFromNexusId($nexus,0);
 		
 		//Initialize categories and content
 		$categories=postTableCheckboxes($db,"categories",$_POST);

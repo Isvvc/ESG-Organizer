@@ -10,7 +10,7 @@
 ?><?php
 	//print_r($_POST);
 	if(isset($_POST['submit'])){
-		// Store the data POSTed from the add author form
+		// Store the data POSTed
 		$id=mysqli_real_escape_string($db,$_POST['id']);
 		
 		// Create the MySQL query to remove the category form any author
